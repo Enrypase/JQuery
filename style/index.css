@@ -1,0 +1,46 @@
+body{
+    background-color: black;
+    font-family: 'Akshar', sans-serif;
+}
+.document{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-row-gap: 3vh;
+    padding: 1vh 1vw 1vh 1vw;
+}
+.first{
+    background-color: #226F54;
+    padding: 1vh 1vw 1vh 1vw;
+    background-image: url(../images/forest.jpg);
+    background-size: cover;
+    height: 95vh;
+    text-align: center;
+}
+.first button{
+    margin-top: 85vh;
+    height: 10vh;
+    min-width: 180px;
+    width: 20vw;
+    font-family: 'Akshar', sans-serif;
+    font-size: 2em;
+    border: 0.25vh solid black;
+    border-radius: 25px;
+    transition: background-color 0.25s ease-in-out, border 0.1s ease-in-out;
+}
+.first button:hover{
+    border: 0.25vh solid gray;
+    background-color: rgba(255,255,255,0.85);
+}
+@media screen and (min-width: 1000px) {
+    .first button{
+        width: 200px;
+    }
+  }
+.second{
+    background-color: #87C38F;
+    padding: 1vh 1vw 1vh 1vw;
+}
+.third{
+    background-color: #F4F0BB;
+    padding: 1vh 1vw 1vh 1vw;
+}
