@@ -19,7 +19,7 @@ body{
 .first button{
     margin-top: 85vh;
     height: 10vh;
-    min-width: 180px;
+    min-width: 210px;
     width: 20vw;
     font-family: 'Akshar', sans-serif;
     font-size: 2em;
@@ -31,14 +31,49 @@ body{
     border: 0.25vh solid gray;
     background-color: rgba(255,255,255,0.85);
 }
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1500px) {
     .first button{
-        width: 200px;
+        max-width: 300px;
     }
   }
 .second{
     background-color: #87C38F;
     padding: 1vh 1vw 1vh 1vw;
+    text-align: center;
+}
+.secondText{
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.secondGrid{
+    text-align: center;
+    width: 100%;
+    color:black;
+}
+#firstFade{
+    transition: color ease-in 0.25s;
+    padding: 5vh 0 5vh 0;
+}
+#firstFade:hover{
+    color: white;
+    background-color: rgba(255,255,255,0.05);
+}
+#secondFade{
+    transition: color ease-in 0.25s;
+    padding: 5vh 0 5vh 0;
+}
+#secondFade:hover{
+    color: #226F54;
+    background-color: rgba(255,255,255,0.05);
+}
+#thirdFade{
+    transition: color ease-in 0.25s;
+    padding: 5vh 0 5vh 0;
+}
+#thirdFade:hover{
+    color: #F4F0BB;
+    background-color: rgba(255,255,255,0.05);
 }
 .third{
     background-color: #F4F0BB;

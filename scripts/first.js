@@ -4,10 +4,20 @@ let sign = 1
 $(document).ready(function() {
     // When the mouse moves (and is over .first div) call the following function
     $(".first").mousemove(function(data){
-        // Get mouse coordinates
-        let mouseX = data.pageX
+        // The output is the same
+
+        /*
+        The following commented code doesn't fit for this situation:
+        // Method 1
+        $(".first").animate({
+            'background-position-x': data.pageX * sign
+        }, 1, 'linear')
+        */
+
+        // Method 2
         // Moving the background position
-        $(this).css("background-position", mouseX * 0.2 * sign)
+        $(this).css("background-position", data.pageX * 0.25 * sign)
+        
     })
     $(document).keypress(function(data) {
         if(data.which === 49){
