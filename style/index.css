@@ -1,4 +1,5 @@
 body{
+    scroll-behavior: smooth;
     background-color: black;
     font-family: 'Akshar', sans-serif;
 }
@@ -12,9 +13,14 @@ body{
     background-color: #226F54;
     padding: 1vh 1vw 1vh 1vw;
     background-image: url(../images/forest.jpg);
+    background-repeat: no-repeat;
     background-size: cover;
     height: 95vh;
     text-align: center;
+
+    transition: background-position 0.25s linear;
+
+    cursor: none;
 }
 .first button{
     margin-top: 85vh;
@@ -47,35 +53,96 @@ body{
     height: 100%;
 }
 .secondGrid{
+    display: grid;
+    grid-template-rows: 90% 10%;
     text-align: center;
     width: 100%;
     color:black;
 }
-#firstFade{
-    transition: color ease-in 0.25s;
+.fade{
+    transition: color ease-in 0.15s;
     padding: 5vh 0 5vh 0;
+    display: none;
 }
-#firstFade:hover{
-    color: white;
-    background-color: rgba(255,255,255,0.05);
+.fade:hover{
+    color: white !important;
 }
-#secondFade{
-    transition: color ease-in 0.25s;
-    padding: 5vh 0 5vh 0;
+.link:hover{
+    text-decoration: underline;
 }
-#secondFade:hover{
-    color: #226F54;
-    background-color: rgba(255,255,255,0.05);
+.secondBody{
+    padding: 3vh;
 }
-#thirdFade{
-    transition: color ease-in 0.25s;
-    padding: 5vh 0 5vh 0;
+.secondBody:hover{
+    background-color: rgba(255,255,255,0.1);
 }
-#thirdFade:hover{
-    color: #F4F0BB;
-    background-color: rgba(255,255,255,0.05);
+#title{
+    border-top: 0.5vh solid black;
+    border-bottom: 0.5vh solid black;
+    padding: 3vh;
+
+    animation: titleBorder 10s infinite;
+}
+@keyframes titleBorder{
+    0% {border-color: black}
+    50% {border-color: white}
+    100% {border-color: black}
+}
+.secondFooter{
+    padding-top: 15vh;
+    animation: footerColor 10s infinite;
+}
+@keyframes footerColor{
+    0% {color: black}
+    33% {color: white}
+    66% {color: purple}
+    100% {color: black}
 }
 .third{
     background-color: #F4F0BB;
     padding: 1vh 1vw 1vh 1vw;
+
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 10% 80% 10%;
+}
+.third button{
+    padding: 2vh;
+    border-radius: 25px;
+
+    font-family: 'Akshar', sans-serif;
+    font-size: 2em;
+
+    background-color: transparent;
+
+    margin: 0;
+}
+.third button:hover{
+    background-color: rgba(255,255,255,0.65);
+}
+.buttonSpace{
+    display: flex;
+    align-items: center;
+    height: 100%;
+
+    justify-content: space-evenly;
+}
+#firstButton{
+    grid-row: 2;
+    grid-column: 1;
+}
+#secondButton{
+    grid-row: 2;
+    grid-column: 3;
+}
+#thirdText{
+    display: flex;
+    align-items: center;
+    height: 100%;
+
+    justify-content: space-evenly;
+
+    grid-row: 2;
+    grid-column: 2;
+    text-align: center;
 }

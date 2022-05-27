@@ -16,8 +16,9 @@ $(document).ready(function() {
 
         // Method 2
         // Moving the background position
-        $(this).css("background-position", data.pageX * 0.25 * sign)
-        
+        $(this).css("background-position-x", 0 - data.pageX * 0.25 * sign)
+        // Introduce una serie di complicazioni
+        // $(this).css("background-position-y", 0 + data.pageY * 0.25 * sign)        
     })
     $(document).keypress(function(data) {
         if(data.which === 49){
