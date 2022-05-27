@@ -61,8 +61,8 @@ function renderPage(){
             $("#third").css("background-image", "url('../images/violet.png')")
 
             $("#third").css("color", "black")
-            $("button").css("color", "black")
-            $("button").css("border-color", "black")
+            $(".thirdButtons").css("color", "black")
+            $(".thirdButtons").css("border-color", "black")
             $("#textCenter").html(secondPage)
 
             break;
@@ -71,8 +71,8 @@ function renderPage(){
 
             $("#secondButton").css("display", "none")
             $("#third").css("color", "white")
-            $("button").css("color", "white")
-            $("button").css("border-color", "white")
+            $(".thirdButtons").css("color", "white")
+            $(".thirdButtons").css("border-color", "white")
             $("#textCenter").html(thirdPage)
 
             break;
