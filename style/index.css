@@ -11,18 +11,25 @@ body{
 }
 .first{
     background-color: #226F54;
-    padding: 1vh 1vw 1vh 1vw;
-    background-image: url(../images/forest.jpg);
-    background-size: cover;
+
     height: 95vh;
     text-align: center;
 
-    transition: background-position 0.25s linear;
-
-    cursor: none;
+    overflow: hidden;
 }
+.firstImg{
+    height: 100%;
+    position: relative;
+    left: 0;
+    right: 0;
+
+    float: left;
+}
+
 .first button{
-    margin-top: 85vh;
+    position: absolute;
+    top: 85%;
+    left: 40%;
     height: 10vh;
     min-width: 210px;
     width: 20vw;
