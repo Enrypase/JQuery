@@ -38,7 +38,6 @@ function scrollFunction(){
         if(lastScrollY <= scrollY){ 
             const elementDistanceFromTop = document.getElementsByName(fadeElements[i].id)[0].getBoundingClientRect()
             if(elementDistanceFromTop.y <= $(window).height()){
-                console.log("Distance of " + fadeElements[i].getAttribute("name") + " of " + elementDistanceFromTop.y + " window heigh " + $(window).height())
                 fadeElement($(`#${fadeElements[i].id}`))
             }
         }else{
