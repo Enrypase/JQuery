@@ -16,6 +16,7 @@ body{
     text-align: center;
 
     overflow: hidden;
+
 }
 #firstImg{
     height: 100%;
@@ -25,7 +26,6 @@ body{
 
     float: left;
 }
-
 #first button{
     height: 10vh;
     min-width: 210px;

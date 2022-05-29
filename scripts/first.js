@@ -1,85 +1,106 @@
-// Sign of the movement used in the equation for getting the image position
 let sign = 1
-// Movement coefficient used in the equation for getting the image position and for scaling the image
 let coeff
-// DOM Elements
+
+const mouseEnterTime = 100
+const renderCenterTime = 250
+
 const image = $("#firstImg")
 const container = $("#first")
 const slider = document.getElementById("slider")
-// Global Variables
+
 let containerHeight = container.height()
 let containerWidth = container.width()
 let currentLeft = 0
 let currentTop = 0
-// When the document is fully loaded
+
+let currentExecutingAnimation
+
 $(document).ready(function() {
     coeff = slider.value
-    // Adapt the image to the screen
+
     scaleHeight()
-    // Render the image in the center of the screen
     renderCenter()
-    // When the mouse moves (and is over #first div) call the following function
-    container.mousemove(function(data){
-        // Calculate the new X/Y - the distance is calculated from the center of the page
-        let x = currentLeft + (containerWidth / 2 - data.pageX) * sign * coeff
-        let y = currentTop + (containerHeight / 2 - data.pageY) * sign * coeff
-        // Set the new coordinates
-        image.css("left", `${x}px`)
-        image.css("top", `${y}px`)
+    
+    container.mouseenter(function(data){
+        moveMouse(data.pageX, data.pageY, mouseEnterTime, "linear")
     })
-    // When the dimension of the window changes, adapt the image
+    container.mousemove(function(data){
+        moveMouse(data.pageX, data.pageY, 0)
+    })
+    container.mouseleave(function(){
+        renderCenter()
+    })
+    
     $(window).resize(function(){
         scaleHeight()
         renderCenter()
     })   
   })
-  // Invert the axes
+
   function invertAxes() {
     sign *= -1
   }
-  // Renders any given image to the center of the screen saving it's left and top position
-  function renderCenter(){    
-    // Image height & width
+
+  function renderCenter(){  
+      
+    if(currentExecutingAnimation != null){
+        currentExecutingAnimation.stop()
+    }
+
     const elementHeight = image.height()
     const elementWidth = image.width()
-    // Container height & width
     containerHeight = container.height()
     containerWidth = container.width()
-    // Differences between container and element
+
     let diffX = (containerWidth - elementWidth)
     let diffY = (containerHeight - elementHeight)
-    // We set a distance from top/left of the half of the difference of height/width from the container and the element. So it will remain centered
+
     currentTop = diffY / 2
-    image.css("top", `${currentTop}px`)
     currentLeft = diffX / 2
-    image.css("left", `${currentLeft}px`)  
+    currentExecutingAnimation = image.animate({
+        top: `${currentTop}px`,
+        left: `${currentLeft}px`
+    }, renderCenterTime, "linear")
   }
-  // Adapt the image to the screen
+
   function scaleHeight(){
-    // Image height & width
     const elementHeight = image.height()
     const elementWidth = image.width()
-    // Container height & width
     containerHeight = container.height()
     containerWidth = container.width()
-    // Getting the minimum height for covering the whole screen
+
     const rawHeight = containerHeight + containerHeight * coeff
     const minHeight = rawHeight + rawHeight * 0.05
-    // Calculate the width needed to cover the page + possible movements
+
     const rawWidth = containerWidth + containerWidth * coeff
     const newWidth = rawWidth + rawWidth * 0.05
-    // Getting the hight from the calculated width
+
     const calculatedHight = (elementHeight / elementWidth) * newWidth
-    // If the calculated height is more than the minimum one use it, otherwise use the minimum height
+
     if(calculatedHight >= minHeight){
         image.css("height", `${calculatedHight}px`)
     }else{
         image.css("height", `${minHeight}px`)
     }   
   }
-  // Slider handler
+
   function changeCoeff(value){
       coeff = value
       scaleHeight()
       renderCenter()
   }
+  function moveMouse(pageX, pageY, delay, animationType){
+
+    if(currentExecutingAnimation != null && delay != 0){
+        currentExecutingAnimation.stop()
+    }
+
+    let x = currentLeft + (containerWidth / 2 - pageX) * sign * coeff
+    let y = currentTop + (containerHeight / 2 - pageY) * sign * coeff
+
+    currentExecutingAnimation = image.animate({
+        top: `${y}px`,
+        left: `${x}px`
+    }, delay, animationType)
+  }
+      
