@@ -11,27 +11,30 @@
     </head>
     <body>
         <div class="document">
-            <div class="first" id="first">
-                <img src="../images/forest.jpg" class="firstImg">
-                <button onClick="toggleAxes()">Toggle Axes</button>
+            <div id="first">
+                <img src="../images/forest.jpg" id="firstImg">
+                <div id="buttonContainer" class="centerVertically">
+                    <button onClick="invertAxes()">Invert Axes</button>
+                    <input type="range" min="0.5" max="2" step="0.5" value="1" id="slider" onchange="changeCoeff(this.value)">
+                </div>
             </div>
             <div class="second" id="second">
-                <div class="secondText">
+                <div class="secondText centerVertically">
                     <div class="secondGrid">
                         
                     </div>
                 </div>
             </div>
             <div class="third" id="third">
-                <div class="buttonSpace" id="firstButton">
+                <div class="buttonSpace centerVertically" id="firstButton">
                     <button onClick="left()" class="thirdButtons"><</button>
                 </div>
-                <div id="thirdText">
+                <div id="thirdText" class="centerVertically">
                     <div id="textCenter">
 
                     </div>
                 </div>
-                <div class="buttonSpace" id="secondButton">
+                <div class="buttonSpace centerVertically" id="secondButton">
                     <button onClick="right()" class="thirdButtons">></button> 
                 </div>
             </div>

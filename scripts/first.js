@@ -1,38 +1,43 @@
+// Sign of the movement used in the equation for getting the image position
 let sign = 1
-const image = $(".firstImg")
-const container = $(".first")
-// Container height & width
+// Movement coefficient used in the equation for getting the image position and for scaling the image
+let coeff
+// DOM Elements
+const image = $("#firstImg")
+const container = $("#first")
+const slider = document.getElementById("slider")
+// Global Variables
 let containerHeight = container.height()
 let containerWidth = container.width()
-// Current positioning
 let currentLeft = 0
 let currentTop = 0
-
 // When the document is fully loaded
 $(document).ready(function() {
-    // Calculating initial scale/position
+    coeff = slider.value
+    // Adapt the image to the screen
     scaleHeight()
+    // Render the image in the center of the screen
     renderCenter()
-    // When the mouse moves (and is over .first div) call the following function
-    $(".first").mousemove(function(data){
-        // Calculate the new X - the distance is calculated from the center of the page
-        let x = currentLeft + (containerWidth / 2 - data.pageX) * sign
-        // Same situation with the Y
-        let y = currentTop + (containerHeight / 2 - data.pageY) * sign
+    // When the mouse moves (and is over #first div) call the following function
+    container.mousemove(function(data){
+        // Calculate the new X/Y - the distance is calculated from the center of the page
+        let x = currentLeft + (containerWidth / 2 - data.pageX) * sign * coeff
+        let y = currentTop + (containerHeight / 2 - data.pageY) * sign * coeff
         // Set the new coordinates
-        $(".firstImg").css("left", `${x}px`)
-        $(".firstImg").css("top", `${y}px`)
+        image.css("left", `${x}px`)
+        image.css("top", `${y}px`)
     })
+    // When the dimension of the window changes, adapt the image
     $(window).resize(function(){
         scaleHeight()
         renderCenter()
-    })
+    })   
   })
-  // Invert axes
-  function toggleAxes() {
+  // Invert the axes
+  function invertAxes() {
     sign *= -1
   }
-  // Renders any given image to the center of the screen
+  // Renders any given image to the center of the screen saving it's left and top position
   function renderCenter(){    
     // Image height & width
     const elementHeight = image.height()
@@ -57,8 +62,24 @@ $(document).ready(function() {
     // Container height & width
     containerHeight = container.height()
     containerWidth = container.width()
+    // Getting the minimum height for covering the whole screen
+    const rawHeight = containerHeight + containerHeight * coeff
+    const minHeight = rawHeight + rawHeight * 0.05
     // Calculate the width needed to cover the page + possible movements
-    const newWidth = containerWidth * 2 + containerWidth * 2 * 0.05
-    // oldHeight / oldWidth = newHeight / newWidth -> newHeight = oldHeight/oldWith * newWidth
-    image.css("height", `${(elementHeight / elementWidth) * newWidth}px`)
+    const rawWidth = containerWidth + containerWidth * coeff
+    const newWidth = rawWidth + rawWidth * 0.05
+    // Getting the hight from the calculated width
+    const calculatedHight = (elementHeight / elementWidth) * newWidth
+    // If the calculated height is more than the minimum one use it, otherwise use the minimum height
+    if(calculatedHight >= minHeight){
+        image.css("height", `${calculatedHight}px`)
+    }else{
+        image.css("height", `${minHeight}px`)
+    }   
+  }
+  // Slider handler
+  function changeCoeff(value){
+      coeff = value
+      scaleHeight()
+      renderCenter()
   }

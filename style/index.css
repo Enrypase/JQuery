@@ -9,7 +9,7 @@ body{
     grid-row-gap: 3vh;
     padding: 1vh 1vw 1vh 1vw;
 }
-.first{
+#first{
     background-color: #226F54;
 
     height: 95vh;
@@ -17,7 +17,7 @@ body{
 
     overflow: hidden;
 }
-.firstImg{
+#firstImg{
     height: 100%;
     position: relative;
     left: 0;
@@ -26,10 +26,7 @@ body{
     float: left;
 }
 
-.first button{
-    position: absolute;
-    top: 85%;
-    left: 40%;
+#first button{
     height: 10vh;
     min-width: 210px;
     width: 20vw;
@@ -39,23 +36,32 @@ body{
     border-radius: 25px;
     transition: background-color 0.25s ease-in-out, border 0.1s ease-in-out;
 }
-.first button:hover{
+#first button:hover{
     border: 0.25vh solid gray;
     background-color: rgba(255,255,255,0.85);
 }
 @media screen and (min-width: 1500px) {
-    .first button{
+    #first button{
         max-width: 300px;
     }
-  }
+}
+#buttonContainer{
+    position: absolute;
+    top: 85%;
+    left: 0%;
+    width: 100%;
+    justify-content: space-evenly;
+}
+.centerVertically{
+    display: flex;
+    align-items: center;
+}
 .second{
     background-color: #87C38F;
     padding: 1vh 1vw 1vh 1vw;
     text-align: center;
 }
 .secondText{
-    display: flex;
-    align-items: center;
     height: 100%;
 }
 .secondGrid{
@@ -127,8 +133,6 @@ body{
     background-color: rgba(255,255,255,0.65);
 }
 .buttonSpace{
-    display: flex;
-    align-items: center;
     height: 100%;
 
     justify-content: space-evenly;
@@ -142,8 +146,6 @@ body{
     grid-column: 3;
 }
 #thirdText{
-    display: flex;
-    align-items: center;
     height: 100%;
 
     justify-content: space-evenly;
