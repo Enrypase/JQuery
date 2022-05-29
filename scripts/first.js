@@ -52,8 +52,8 @@ $(document).ready(function() {
     containerHeight = container.height()
     containerWidth = container.width()
 
-    let diffX = (containerWidth - elementWidth)
-    let diffY = (containerHeight - elementHeight)
+    const diffX = (containerWidth - elementWidth)
+    const diffY = (containerHeight - elementHeight)
 
     currentTop = diffY / 2
     currentLeft = diffX / 2
@@ -95,12 +95,11 @@ $(document).ready(function() {
         currentExecutingAnimation.stop()
     }
 
-    let x = currentLeft + (containerWidth / 2 - pageX) * sign * coeff
-    let y = currentTop + (containerHeight / 2 - pageY) * sign * coeff
+    const x = currentLeft + (containerWidth / 2 - pageX) * sign * coeff
+    const y = currentTop + (containerHeight / 2 - pageY) * sign * coeff
 
     currentExecutingAnimation = image.animate({
         top: `${y}px`,
         left: `${x}px`
     }, delay, animationType)
   }
-      

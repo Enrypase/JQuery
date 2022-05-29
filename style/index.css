@@ -72,8 +72,7 @@ body{
     color:black;
 }
 .fade{
-    transition: color ease-in 0.15s;
-    padding: 5vh 0 5vh 0;
+    transition: color ease-in 150ms;
     display: none;
 }
 .fade:hover{
