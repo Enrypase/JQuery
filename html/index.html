@@ -15,27 +15,47 @@
                 <img src="../images/forest.jpg" id="firstImg">
                 <div id="buttonContainer" class="centerVertically">
                     <button onClick="invertAxes()">Invert Axes</button>
-                    <input type="range" min="0.5" max="2" step="0.5" value="1" id="slider" onchange="changeCoeff(this.value)">
                 </div>
             </div>
-            <div class="second" id="second">
+            <div id="second" id="second">
                 <div class="secondText centerVertically">
                     <div class="secondGrid">
                         
                     </div>
                 </div>
             </div>
-            <div class="third" id="third">
-                <div class="buttonSpace centerVertically" id="firstButton">
-                    <button onClick="left()" class="thirdButtons"><</button>
-                </div>
-                <div id="thirdText" class="centerVertically">
-                    <div id="textCenter">
-
+            <div id="third" id="third">
+                <h1>This is a slider!</h1>
+                <div id="slider">
+                    <button class="btn" id="leftBtn" onclick="slide(true)"><</button>
+                    <div id="sliderImgs" onclick="slideLeft()">
+                        <div class='sliderElement' id="firstElement">
+                            <h2>This is an item</h1>
+                            <img src="../images/sliderImg.jpg">
+                            <h3>This is a description</h2>
+                        </div>
+                        <div class='sliderElement' id="secondElement">
+                            <h2>This is an item</h1>
+                            <img src="../images/sliderImg.jpg">
+                            <h3>This is a description</h2>
+                        </div>
+                        <div class='sliderElement' id="thirdElement">
+                            <h2>This is an item</h1>
+                            <img src="../images/sliderImg.jpg">
+                            <h3>This is a description</h2>
+                        </div>
+                        <div class='sliderElement' id="forthElement">
+                            <h2>This is an item</h1>
+                            <img src="../images/sliderImg.jpg">
+                            <h3>This is a description</h2>
+                        </div>
+                        <div class='sliderElement' id="fifthElement">
+                            <h2>This is an item</h1>
+                            <img src="../images/sliderImg.jpg">
+                            <h3>This is a description</h2>
+                        </div>
                     </div>
-                </div>
-                <div class="buttonSpace centerVertically" id="secondButton">
-                    <button onClick="right()" class="thirdButtons">></button> 
+                    <button class="btn" id="rightBtn" onclick="slide(false)">></button>
                 </div>
             </div>
         </div>

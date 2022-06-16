@@ -1,105 +1,45 @@
+// Global Variables
 let sign = 1
-let coeff
-
-const mouseEnterTime = 100
-const renderCenterTime = 250
-
-const image = $("#firstImg")
-const container = $("#first")
-const slider = document.getElementById("slider")
-
-let containerHeight = container.height()
-let containerWidth = container.width()
-let currentLeft = 0
-let currentTop = 0
-
-let currentExecutingAnimation
-
-$(document).ready(function() {
-    coeff = slider.value
-
-    scaleHeight()
-    renderCenter()
-    
-    container.mouseenter(function(data){
-        moveMouse(data.pageX, data.pageY, mouseEnterTime, "linear")
-    })
-    container.mousemove(function(data){
-        moveMouse(data.pageX, data.pageY, 0)
-    })
-    container.mouseleave(function(){
-        renderCenter()
-    })
-    
-    $(window).resize(function(){
-        scaleHeight()
-        renderCenter()
-    })   
-  })
-
-  function invertAxes() {
-    sign *= -1
-  }
-
-  function renderCenter(){  
-      
-    if(currentExecutingAnimation != null){
-        currentExecutingAnimation.stop()
+const first = $('#first')
+const firstImage = $('#firstImg')
+const animationTiming = 250
+let centerPos = {top: 0,left: 0}
+let lastTime = $.now()
+// Invert Axes
+function invertAxes(){
+    sign *= -1;
+}
+// Call this function when the mouse moves inside the first element
+first.mousemove(function(event){
+    if($.now() > lastTime + animationTiming / 5){
+        callAnimation(firstImage, centerPos.top - (first.height() / 2 - event.pageY) * sign, centerPos.left - (first.width() / 2 - event.pageX) * sign, animationTiming)
+        lastTime = $.now()
     }
-
-    const elementHeight = image.height()
-    const elementWidth = image.width()
-    containerHeight = container.height()
-    containerWidth = container.width()
-
-    const diffX = (containerWidth - elementWidth)
-    const diffY = (containerHeight - elementHeight)
-
-    currentTop = diffY / 2
-    currentLeft = diffX / 2
-    currentExecutingAnimation = image.animate({
-        top: `${currentTop}px`,
-        left: `${currentLeft}px`
-    }, renderCenterTime, "linear")
-  }
-
-  function scaleHeight(){
-    const elementHeight = image.height()
-    const elementWidth = image.width()
-    containerHeight = container.height()
-    containerWidth = container.width()
-
-    const rawHeight = containerHeight + containerHeight * coeff
-    const minHeight = rawHeight + rawHeight * 0.05
-
-    const rawWidth = containerWidth + containerWidth * coeff
-    const newWidth = rawWidth + rawWidth * 0.05
-
-    const calculatedHight = (elementHeight / elementWidth) * newWidth
-
-    if(calculatedHight >= minHeight){
-        image.css("height", `${calculatedHight}px`)
-    }else{
-        image.css("height", `${minHeight}px`)
-    }   
-  }
-
-  function changeCoeff(value){
-      coeff = value
-      scaleHeight()
-      renderCenter()
-  }
-  function moveMouse(pageX, pageY, delay, animationType){
-
-    if(currentExecutingAnimation != null && delay != 0){
-        currentExecutingAnimation.stop()
-    }
-
-    const x = currentLeft + (containerWidth / 2 - pageX) * sign * coeff
-    const y = currentTop + (containerHeight / 2 - pageY) * sign * coeff
-
-    currentExecutingAnimation = image.animate({
-        top: `${y}px`,
-        left: `${x}px`
-    }, delay, animationType)
-  }
+})
+// Call this function when the mouse exits from the first element
+first.mouseleave(function(){
+    callAnimation(firstImage, centerPos.top, centerPos.left, animationTiming)
+})
+// General purpose function
+function callAnimation(to, topP, leftP, t){
+    to.stop()
+    to.animate({
+        top: topP,
+        left: leftP
+    }, t, 'linear')
+}
+// When the document is ready find out the center coordinates
+$(document).ready(function(){
+    updateCenter()
+})
+// When the window gets resized find out the center coordinates
+$(window).resize(function(){
+    updateCenter()
+})
+// Function that updates the center coordinates
+function updateCenter(){
+    centerPos.top = (first.height() - firstImage.height())/2
+    centerPos.left = (first.width() - firstImage.width())/2
+    firstImage.css("top", `${centerPos.top}px`)
+    firstImage.css("left", `${centerPos.left}px`)
+}
