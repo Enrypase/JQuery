@@ -149,4 +149,10 @@ body{
 .btn{
     border: 0.5vh solid gray;
     border-radius: 25px;
+    margin: 5vh 0 5vh 0;
+}
+@media screen and (min-width: 600px) {
+    .btn{
+        max-width: 60px;
+    }
 }

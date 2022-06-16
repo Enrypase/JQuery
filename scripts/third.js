@@ -24,10 +24,10 @@ function checkBtns(){
 // Slides left or right given a parameter
 function slide(left){
     const element = $(`#${elements[leftElement].id}`)
-    if(left){
+    if(left && leftElement < elements.length - 1){
         currentLeft -= element.width()
         leftElement++
-    }else{
+    }else if(leftElement > 0){
         currentLeft += element.width()
         leftElement--
     }
