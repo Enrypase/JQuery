@@ -1,41 +1,38 @@
+/*
+    OTHER POSSIBLE SOLUTIONS:
+    1) Block the animation until a specified amount of time is passed (using $.now()) - Used in here
+    2) Using set/clear interval. CPU intensive
+    3) Using request/cancel animation frame. More CPU friendly, stops animations when tab is not displayed - Used in the main file
+*/
 // Global Variables
 let sign = 1
 const first = $('#first')
 const firstImage = $('#firstImg')
 const animationTiming = 250
 let centerPos = {top: 0,left: 0}
-let mousePos = {x: 0, y:0}
-let animation
+let lastTime = $.now()
 // Invert Axes
 function invertAxes(){
     sign *= -1;
 }
-// When the mouse enters request the animation frame
-first.mouseenter(function(){
-    requestAnimationFrame(updateMouseAF)
-})
 // Call this function when the mouse moves inside the first element
 first.mousemove(function(event){
-    mousePos.x = event.pageX
-    mousePos.y = event.pageY
+    if($.now() > lastTime + animationTiming / 5){
+        callAnimation(firstImage, centerPos.top - (first.height() / 2 - event.pageY) * sign, centerPos.left - (first.width() / 2 - event.pageX) * sign, animationTiming)
+        lastTime = $.now()
+    }
 })
 // Call this function when the mouse exits from the first element
 first.mouseleave(function(){
-    firstImage.stop()
-    cancelAnimationFrame(animation)
-    firstImage.animate({
-        top: centerPos.top,
-        left: centerPos.left
-    }, animationTiming, 'linear')
+    callAnimation(firstImage, centerPos.top, centerPos.left, animationTiming)
 })
-// Used By the animation frame
-function updateMouseAF(){
-    firstImage.stop()
-    firstImage.animate({
-        top: centerPos.top - (first.height() / 2 - mousePos.y) * sign,
-        left: centerPos.left - (first.width() / 2 - mousePos.x) * sign
-    }, animationTiming, 'linear')
-    animation = requestAnimationFrame(updateMouseAF);
+// General purpose function
+function callAnimation(to, topP, leftP, t){
+    to.stop()
+    to.animate({
+        top: topP,
+        left: leftP
+    }, t, 'linear')
 }
 // When the document is ready find out the center coordinates
 $(document).ready(function(){
