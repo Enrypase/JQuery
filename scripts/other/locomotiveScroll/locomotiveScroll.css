@@ -1,0 +1,34 @@
+body{
+    font-family: 'Nunito', Arial;
+    background-color: black;
+}
+#mainContainer{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-column-gap: 2.5vh;
+}
+.container{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-row-gap: 2.5vh;
+}
+.section{
+    height: 65vh;
+    padding: 2.5vh 2.5vw 2.5vh 2.5vw;
+}
+#firstSection{
+    background-color: #E8EEF2;
+}
+#secondSection{
+    background-color: #D6C9C9;
+}
+#thirdSection{
+    background-color: #C7D3DD;
+}
+#forthSection{
+    background-color: #77B6EA;
+}
+#fifthSection{
+    background-color: #37393A;
+}
