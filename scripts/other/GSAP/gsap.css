@@ -1,0 +1,44 @@
+#page{
+    display: grid;
+    grid-template-columns: 15% 70% 15%;
+    font-family: 'Nunito', Arial;
+    text-align: center;
+
+    overflow: hidden;
+}
+#menu{
+    display: grid;
+    grid-template-rows: 65vh auto;
+    grid-column: 1;
+    color: darkorange;
+    font-weight: bold;
+    position: fixed;
+    font-size: 1.25em;
+    width: 14.5%;
+}
+#menu *:hover{
+    text-decoration: underline;
+}
+#pageCenter{
+    grid-column: 2;
+}
+#firstImg{
+    height: 65vh;
+    background-image: url("imgs/home.jpg");
+    background-size: cover;
+    background-position: center;
+    margin-top: 10vh;
+}
+#firstImg h1{
+    position: relative;
+    top: 0%;
+    left: 46%;
+    font-size: 3em;
+    opacity: 0;
+}
+#firstImgDescription{
+    opacity: 0;
+}
+.description{
+    margin: 10vh 10vw 0 10vw;
+}
